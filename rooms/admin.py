@@ -43,6 +43,8 @@ class RoomAdmin(admin.ModelAdmin):
         "check_out",
         "instant_book",
         "count_amenities",
+        "count_photos",
+        "total_rating",
     )
 
     list_filter = (
@@ -54,7 +56,6 @@ class RoomAdmin(admin.ModelAdmin):
         "house_rules",
         "city",
         "country",
-        "count_photos",
     )
 
     search_fields = ("=city", "^host__username")
