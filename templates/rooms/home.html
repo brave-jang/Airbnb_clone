@@ -8,8 +8,25 @@
 
 {% block content %}
 
-    {% for room in potato  %}
+    {% for room in page  %}
         <h1>{{room.name}} / ${{room.price}}</h1>
     {% endfor %}
+
+    <h5>
+    {% if page.has_previous %}
+        <a href="?page={{page.number|add:-1}}">Previous</a>
+    {% endif %}
+
+    {% for i in paginator_range %}
+        {% if page.number != i %}
+            {{i}}
+        {% elif page.number == i %}
+            <p style="color: red;">{{i}}</p>
+        {% endif %}
+    {% endfor %}
+    {% if page.has_next  %}
+        <a href="?page={{page.number|add:1}}">Next</a>
+    {% endif %}
+    </h5>
 
 {% endblock content %}
