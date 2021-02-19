@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 
-{% block title %}
-    Home
-{% endblock title %}
+{% block page_title %}
+    {{room.name}}
+{% endblock page_title %}
 
 {% block content %}
 <div>
@@ -35,4 +35,4 @@
     {% endfor %}
     </ul>
 </div>
-{% endblock %} 
+{% endblock %}

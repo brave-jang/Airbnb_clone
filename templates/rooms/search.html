@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}
+{% block page_title %}
     Search
-{% endblock title %}
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
 
 {% block content %}
 
@@ -14,8 +17,10 @@
     </form>
 
     <h3>Results</h3>
+
     {% for room in rooms %}
         <h3>{{room.name}}</h3>
     {% endfor %}
 
-{% endblock content %} 
+
+{% endblock content %}
