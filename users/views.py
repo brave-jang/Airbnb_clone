@@ -63,12 +63,8 @@ class UserProfileView(DetailView):
     context_object_name = "user_obj"
 
 
-class UpdatePasswordView(
-    mixins.EmailLoginOnlyView,
-    mixins.LoggedInOnlyView,
-    SuccessMessageMixin,
-    PasswordChangeView,
-):
+
+class UpdateProfileView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView):
 
     model = models.User
     template_name = "users/update-profile.html"
@@ -96,7 +92,12 @@ class UpdatePasswordView(
         return form
 
 
-class UpdatePasswordView(SuccessMessageMixin, PasswordChangeView):
+class UpdatePasswordView(
+    mixins.LoggedInOnlyView,
+    mixins.EmailLoginOnlyView,
+    SuccessMessageMixin,
+    PasswordChangeView,
+):
 
     template_name = "users/update-password.html"
     success_message = "Password Updated"
