@@ -34,6 +34,7 @@ class CreatePhotoForm(forms.ModelForm):
     def save(self, pk, *args, **kwargs):
         photo = super().save(commit=True)
         room = models.Room.objects.get(pk=pk)
+        photo.room = room
         photo.save()
 
 
@@ -63,4 +64,3 @@ class CreateRoomForm(forms.ModelForm):
     def save(self, *args, **kwargs):
         room = super().save(commit=False)
         return room
-        

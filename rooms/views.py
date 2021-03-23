@@ -92,7 +92,8 @@ class SearchView(View):
                 for facility in facilities:
                     filter_args["facilities"] = facility
 
-                qs = models.Room.objects.filter(**filter_args).order_by("-created")
+                qs = models.Room.objects.filter(
+                    **filter_args).order_by("-created")
 
                 paginator = Paginator(qs, 10, orphans=5)
 
@@ -101,7 +102,8 @@ class SearchView(View):
                 rooms = paginator.get_page(page)
 
                 return render(
-                    request, "rooms/search.html", {"form": form, "rooms": rooms}
+                    request, "rooms/search.html", {
+                        "form": form, "rooms": rooms}
                 )
 
         else:
@@ -185,13 +187,13 @@ class AddPhotoView(user_mixins.LoggedInOnlyView, FormView):
     model = models.Photo
     template_name = "room/photo_create.html"
     fields = ('caption', 'file')
-    form_class  = forms.CreatePhotoForm
+    form_class = forms.CreatePhotoForm
 
     def form_valid(self, form):
         pk = self.kwargs.get('pk')
         form.save(pk)
         messages.success(self.request, "Photo Uploaded")
-        return redirect(reverse("room:photos", kwargs={'pk':pk}))
+        return redirect(reverse("room:photos", kwargs={'pk': pk}))
 
 
 class CreateRoomView(user_mixins.LoggedInOnlyView, FormView):

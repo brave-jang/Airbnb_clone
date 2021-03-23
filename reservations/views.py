@@ -42,7 +42,8 @@ class ReservationDetailView(View):
             raise Http404()
         form = review_forms.CreateReviewForm()
         return render(
-            self.request, "reservations/detail.html", {"reservation": reservation, "form": form}
+            self.request, "reservations/detail.html", {
+                "reservation": reservation, "form": form}
         )
 
 
